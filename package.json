@@ -1,0 +1,35 @@
+{
+  "name": "@andrewcaires/vue-cookie",
+  "version": "1.0.0",
+  "description": "VueJS plugin for HTTP cookie",
+  "main": "dist/vue-cookie.umd.js",
+  "module": "dist/vue-cookie.esm.js",
+  "unpkg": "dist/vue-cookie.min.js",
+  "types": "dist/vue-cookie.d.ts",
+  "scripts": {
+    "build": "rollup -c build/rollup.config.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/andrewcaires/vue-cookie.git"
+  },
+  "keywords": [
+    "vue",
+    "vue-cookie"
+  ],
+  "author": "Andrew Caires",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/andrewcaires/vue-cookie/issues"
+  },
+  "homepage": "https://github.com/andrewcaires/vue-cookie#readme",
+  "dependencies": {
+    "vue": "^2.6.14"
+  },
+  "devDependencies": {
+    "@rollup/plugin-commonjs": "^21.0.0",
+    "@rollup/plugin-typescript": "^8.2.5",
+    "rollup": "^2.58.0",
+    "rollup-plugin-terser": "^7.0.2"
+  }
+}
