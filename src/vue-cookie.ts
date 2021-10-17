@@ -1,10 +1,6 @@
 import Vue, { PluginObject } from 'vue';
 
 export interface VueCookieOptions {
-  expires?: number;
-}
-
-export interface VueCookieAttributes {
   domain?: string;
   expires?: number;
   path?: string;
@@ -55,21 +51,21 @@ class Cookie {
     return cookies[name.trim()] || undefined;
   }
 
-  remove(name: string, options: VueCookieAttributes = {}): void {
+  remove(name: string, options: VueCookieOptions = {}): void {
 
     options.expires = -86400;
 
     this.set(name, '', options);
   }
 
-  set(name: string, value: string, options: VueCookieAttributes = {}): void {
+  set(name: string, value: string, options: VueCookieOptions = {}): void {
 
     document.cookie = this.encode(name, value) + ';' + this.attributes(options);
   }
 
-  private attributes(options: VueCookieAttributes = {}): string {
+  private attributes(options: VueCookieOptions = {}): string {
 
-    const { domain, expires, path, secure } = options;
+    const { domain, expires, path, secure } = { ...this.options, ...options };
 
     const attributes: Array<string> = [];
 
@@ -100,13 +96,11 @@ class Cookie {
     return encodeURIComponent(name.trim()) + '=' + encodeURIComponent(value);
   }
 
-  private expires(time?: number): string {
+  private expires(expires?: number): string {
 
     const date = new Date();
 
-    const expires = this.options.expires || 0;
-
-    date.setTime(date.getTime() + ((time || expires) * 1000));
+    date.setTime(date.getTime() + ((expires || 0) * 1000));
 
     return 'expires=' + date.toUTCString();
   }
@@ -121,12 +115,16 @@ export const VueCookie: PluginObject<VueCookieOptions> = {
 
   install(vue: any, options: VueCookieOptions = {}): void {
 
-    Vue.prototype.$cookie = new Cookie(options);
+    Vue.$cookie = new Cookie(options);
+    Vue.prototype.$cookie = Vue.$cookie;
   }
 };
 
 declare module 'vue/types/vue' {
   interface Vue {
+    $cookie: Cookie;
+  }
+  interface VueConstructor {
     $cookie: Cookie;
   }
 }
