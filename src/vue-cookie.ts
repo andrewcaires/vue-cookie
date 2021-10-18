@@ -111,13 +111,17 @@ class Cookie {
   }
 }
 
+let installed = false;
+
 export const VueCookie: PluginObject<VueCookieOptions> = {
 
   install(vue: any, options: VueCookieOptions = {}): void {
 
+    if (installed) { return; } else { installed = true; }
+
     Vue.$cookie = new Cookie(options);
     Vue.prototype.$cookie = Vue.$cookie;
-  }
+  },
 };
 
 declare module 'vue/types/vue' {

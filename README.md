@@ -1,3 +1,10 @@
+[![npm](https://img.shields.io/npm/v/@andrewcaires/vue-cookie?color=blue&logo=npm)](https://www.npmjs.com/package/@andrewcaires/vue-cookie)
+[![downloads](https://img.shields.io/npm/dt/@andrewcaires/vue-cookie?color=blue)](https://www.npmjs.com/package/@andrewcaires/vue-cookie)
+[![size](https://img.shields.io/github/repo-size/andrewcaires/vue-cookie?color=blue)](https://github.com/andrewcaires/vue-cookie)
+[![language](https://img.shields.io/github/languages/top/andrewcaires/vue-cookie?color=blue)](https://github.com/andrewcaires/vue-cookie)
+[![commit](https://img.shields.io/github/last-commit/andrewcaires/vue-cookie?color=blue&logo=github)](https://github.com/andrewcaires/vue-cookie)
+[![license](https://img.shields.io/github/license/andrewcaires/vue-cookie?color=blue)](https://github.com/andrewcaires/vue-cookie/blob/main/LICENSE)
+
 # vue-cookie
 
 VueJS plugin for HTTP cookie
@@ -67,7 +74,7 @@ this.$cookie.remove('token');
 ```js
 this.$cookie.set('token', '...');
 
-this.$cookie.set('token', {
+this.$cookie.set('token', '...', {
   domain: '',
   expires: 86400,
   path: '/',
