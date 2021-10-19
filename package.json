@@ -1,6 +1,6 @@
 {
   "name": "@andrewcaires/vue-cookie",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "VueJS plugin for HTTP cookie",
   "main": "dist/vue-cookie.umd.js",
   "module": "dist/vue-cookie.esm.js",
