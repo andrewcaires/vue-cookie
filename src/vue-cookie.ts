@@ -1,4 +1,4 @@
-import Vue, { PluginObject } from 'vue';
+import Vue from 'vue';
 
 export interface VueCookieOptions {
   domain?: string;
@@ -15,7 +15,9 @@ const DefaultOptions: VueCookieOptions = {
 
 };
 
-class Cookie {
+let installed = false;
+
+export class VueCookie {
 
   private options: VueCookieOptions;
 
@@ -109,27 +111,22 @@ class Cookie {
 
     return 'path=' + (path ? path : '/');
   }
-}
 
-let installed = false;
-
-export const VueCookie: PluginObject<VueCookieOptions> = {
-
-  install(vue: any, options: VueCookieOptions = {}): void {
+  static install(vue: any, options: VueCookieOptions = {}): void {
 
     if (installed) { return; } else { installed = true; }
 
-    Vue.$cookie = new Cookie(options);
+    Vue.$cookie = new VueCookie(options);
     Vue.prototype.$cookie = Vue.$cookie;
-  },
-};
+  }
+}
 
 declare module 'vue/types/vue' {
   interface Vue {
-    $cookie: Cookie;
+    $cookie: VueCookie;
   }
   interface VueConstructor {
-    $cookie: Cookie;
+    $cookie: VueCookie;
   }
 }
 
